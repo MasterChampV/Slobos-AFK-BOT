@@ -6,7 +6,7 @@
     "type": "offline"
   },
   "server": {
-    "ip": "beardfish.aternos.host:41193",
+    "ip": "beardfish.aternos.host",
     "port": 41193,
     "version": "1.21.1"
   },
