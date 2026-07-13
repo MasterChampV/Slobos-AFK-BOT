@@ -343,7 +343,9 @@ function getReconnectDelay() {
 
   return delay;
 }
-
+console.log(require("mineflayer/package.json").version);
+console.log(require("minecraft-protocol/package.json").version);
+console.log(require("minecraft-data/package.json").version);
 function createBot() {
   if (isReconnecting) {
     console.log('[Bot] Already reconnecting, skipping...');
@@ -372,7 +374,7 @@ function createBot() {
       auth: config['bot-account'].type,
       host: config.server.ip,
       port: config.server.port,
-      version: config.server.version,
+      // version: config.server.version,
       hideErrors: false,
       checkTimeoutInterval: 120000 // 2 minutes - detects dead connections without false-positive disconnects
     });
@@ -453,6 +455,22 @@ bot._client.on('disconnect', (packet) => {
 
 bot._client.on('error', (err) => {
   console.log('[DEBUG] Client error:', err);
+});
+
+bot._client.on('success', () => {
+  console.log('[DEBUG] Login success');
+});
+
+bot._client.on('compress', () => {
+  console.log('[DEBUG] Compression enabled');
+});
+
+bot._client.on('set_compression', () => {
+  console.log('[DEBUG] Set compression');
+});
+
+bot._client.on('login_plugin_request', (data) => {
+  console.log('[DEBUG] Login plugin request:', data.channel);
 });
 
     // Handle disconnection
