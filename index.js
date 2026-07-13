@@ -473,6 +473,18 @@ bot._client.on('login_plugin_request', (data) => {
   console.log('[DEBUG] Login plugin request:', data.channel);
 });
 
+bot.on('kicked', (reason, loggedIn) => {
+  console.log('[KICK]', reason);
+});
+
+bot._client.on('disconnect', (packet) => {
+  console.log('[DISCONNECT PACKET]', packet);
+});
+
+bot._client.on('end', (reason) => {
+  console.log('[CLIENT END]', reason);
+});
+    
     // Handle disconnection
     bot.on('end', (reason) => {
       const wasSpawned = botState.connected;
