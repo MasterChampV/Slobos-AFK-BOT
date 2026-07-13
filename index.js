@@ -439,7 +439,21 @@ function createBot() {
       });
     });
 
-    
+    bot._client.on('connect', () => {
+  console.log('[DEBUG] TCP connected');
+});
+
+bot._client.on('login', () => {
+  console.log('[DEBUG] Login packet received');
+});
+
+bot._client.on('disconnect', (packet) => {
+  console.log('[DEBUG] Disconnect:', packet);
+});
+
+bot._client.on('error', (err) => {
+  console.log('[DEBUG] Client error:', err);
+});
 
     // Handle disconnection
     bot.on('end', (reason) => {
